@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
+
 using WCM.WebApi.Services;
 
 namespace WCM.WebApi.Configuration
@@ -17,6 +18,7 @@ namespace WCM.WebApi.Configuration
 
 
             services.AddTransient<IChampionshipService ,ChampionshipService>();
+            
         }
     }
 }

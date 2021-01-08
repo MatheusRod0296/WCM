@@ -17,33 +17,25 @@ namespace WCM.WebApi.Services
         public async Task<ResultTournament> Championship(string[] moviesId)
         {
             var movies = await MoviesFilterByIds.GetMoviesById(_movieService, moviesId);
-
             if (movies.Count == 8)
             {
                 movies.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
                 var match = ExecuteChampionship(movies);
-
                 return new ResultTournament(match.Winner, match.Loser);
             }
-            throw new ArgumentException("Numero de Filmes invalido, é necessario 8 filmes");  
+            throw new ArgumentException("Numero de Filmes invalido, é necessario 8 filmes");
         }
 
         private MatchModel ExecuteChampionship(List<MovieModel> movies)
-        {
-            List<MatchModel> Matches = new List<MatchModel>();
-            
-            var countCrescent = 1;
-            for (int i = 0; i < movies.Count / 2; i++)
-            {                
-                Matches.Add(new MatchModel(movies[i], movies[movies.Count - countCrescent]));
-                countCrescent++;
-            }
+        {  
+            IGenerateMatches generator = GenerateFactory.CreateGenerator(movies.Count);
+            var matches = generator.Execute(movies);
 
-            var winners = Matches.Select(x => x.Winner).ToList();
+            var winners = matches.Select(x => x.Winner).ToList();
             if (winners.Count > 1)
                 return ExecuteChampionship(winners);
 
-            return Matches.First();
+            return matches.First();
         }
     }
 }
