@@ -10,10 +10,13 @@ namespace WCM.WebApi.Configuration
         public static void AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient("Refit", op =>
-            {
+            {                
                 op.BaseAddress = new System.Uri(configuration.GetSection("URLMovieCup").Value);
             })
             .AddTypedClient(Refit.RestService.For<IMoviesService>);
+
+
+            services.AddTransient<IChampionshipService ,ChampionshipService>();
         }
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Refit" Version="5.2.4" />
+     <PackageReference Include="Swashbuckle.aspNetCore" Version="5.3.3" />
   </ItemGroup>
 
 

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Refit;
 using WCM.WebApi.Models;
 
 namespace WCM.WebApi.Services
 {
-    public interface IMoviesService
+    public interface IChampionshipService
     {
-        [Get("/api/filmes")]
-        Task<IEnumerable<MovieModel>> GetMovies();
+         Task<ResultTournament> Championship(string[] moviesId);
+
     }
 }
