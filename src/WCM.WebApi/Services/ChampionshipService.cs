@@ -17,17 +17,14 @@ namespace WCM.WebApi.Services
         public async Task<ResultChampionship> Play(string[] moviesId)
         {
             var movies = await MoviesFilterByIds.GetMoviesById(_movieService, moviesId);
-            if (movies.Count == 8)
-            {
-                movies.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
-                var match = ExecuteChampionship(movies);
-                return new ResultChampionship(match.Winner, match.Loser);
-            }
-            throw new ArgumentException("Número de Filmes inválido,são necessários 8 filmes");
+
+            movies.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
+            var match = ExecuteChampionship(movies);
+            return new ResultChampionship(match.Winner, match.Loser);
         }
 
         private MatchModel ExecuteChampionship(List<MovieModel> movies)
-        {  
+        {
             IGenerateMatches generator = GenerateFactory.CreateGenerator(movies.Count);
             var matches = generator.Execute(movies);
 
