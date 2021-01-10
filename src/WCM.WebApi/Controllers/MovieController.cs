@@ -14,8 +14,8 @@ namespace WCM.WebApi.Controllers
     {
        
         [HttpGet]
-        public async Task<IEnumerable<MovieModel>> Get([FromServices]IMoviesService _movieService){ 
-                return await _movieService.GetMovies();
-        }
+        public async Task<IEnumerable<MovieModel>> Get([FromServices]IMoviesService _movieService)
+                => await _movieService.GetMovies();
+        
     }
 }

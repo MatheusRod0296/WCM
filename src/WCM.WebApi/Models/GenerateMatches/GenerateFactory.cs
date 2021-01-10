@@ -17,7 +17,7 @@ namespace WCM.WebApi.Models
                     return new Finals();              
 
                 default:
-                    throw new ApplicationException("Numero de participantes fora do escopo");
+                    throw new ApplicationException("Número de participantes fora do escopo");
             }
         }
     }

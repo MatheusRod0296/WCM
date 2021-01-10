@@ -12,7 +12,7 @@ namespace WCM.WebApi.Configuration
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
                 {
                     Title = "World Cup Movies",
-                    Description = "Responsable API from  Catalog items",
+                    Description = "Responsable API from movies",
 
                 });
             });

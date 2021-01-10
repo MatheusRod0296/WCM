@@ -6,7 +6,7 @@ namespace WCM.WebApi.Services
 {
     public interface IChampionshipService
     {
-         Task<ResultTournament> Championship(string[] moviesId);
+         Task<ResultChampionship> Play(string[] moviesId);
 
     }
 }

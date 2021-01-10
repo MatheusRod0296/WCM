@@ -1,10 +1,17 @@
 
+using System;
+
 namespace WCM.WebApi.Models
 {
     public class MatchModel
     {
-        public MatchModel(MovieModel movieOne, MovieModel movieTwo)
-            => Play(movieOne, movieTwo);
+        public MatchModel(MovieModel movieOne, MovieModel movieTwo){
+            if(movieOne == null || movieTwo == null)
+                throw new ArgumentException("Os Filmes não podem ser nulos.");
+
+             Play(movieOne, movieTwo);
+        }
+           
         public MovieModel Winner { get; private set; }
         public MovieModel Loser { get; private set; }
 

@@ -14,16 +14,16 @@ namespace WCM.WebApi.Services
         public ChampionshipService(IMoviesService movieService)
              => _movieService = movieService;
 
-        public async Task<ResultTournament> Championship(string[] moviesId)
+        public async Task<ResultChampionship> Play(string[] moviesId)
         {
             var movies = await MoviesFilterByIds.GetMoviesById(_movieService, moviesId);
             if (movies.Count == 8)
             {
                 movies.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
                 var match = ExecuteChampionship(movies);
-                return new ResultTournament(match.Winner, match.Loser);
+                return new ResultChampionship(match.Winner, match.Loser);
             }
-            throw new ArgumentException("Numero de Filmes invalido, é necessario 8 filmes");
+            throw new ArgumentException("Número de Filmes inválido,são necessários 8 filmes");
         }
 
         private MatchModel ExecuteChampionship(List<MovieModel> movies)

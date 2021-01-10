@@ -1,8 +1,8 @@
 namespace WCM.WebApi.Models
 {
-    public class ResultTournament
+    public class ResultChampionship
     {
-        public ResultTournament(MovieModel firstPlace, MovieModel secondPlace)
+        public ResultChampionship(MovieModel firstPlace, MovieModel secondPlace)
         {
             FirstPlace = firstPlace;
             SecondPlace = secondPlace;
