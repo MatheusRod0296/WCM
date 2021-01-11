@@ -11,6 +11,7 @@ namespace WCM.WebApi.Helpers
         public static async Task<List<MovieModel>> GetMoviesById(IMoviesService _movieService, string[] moviesId)
         {
             var resultMovies = await _movieService.GetMovies();
+            
             return resultMovies.Where(x => moviesId.Contains(x.Id)).ToList();
         }
     }

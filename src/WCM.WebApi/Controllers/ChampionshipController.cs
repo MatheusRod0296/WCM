@@ -10,8 +10,8 @@ namespace WCM.WebApi.Controllers
     public class ChampionshipController : Controller
     {
         [HttpPost]
-        public async Task<ResultChampionship> Post([FromServices]IChampionshipService _movieService, [FromBody] string[] moviesId)
-                => await _movieService.Play(moviesId);
+        public async Task<ResultChampionship> Post([FromServices]IChampionshipService _championshipService, [FromBody] string[] moviesId)
+                => await _championshipService.Play(moviesId);
        
     }
 }

@@ -19,16 +19,20 @@ namespace WCM.WebApi.Services
             var movies = await MoviesFilterByIds.GetMoviesById(_movieService, moviesId);
 
             movies.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
+
             var match = ExecuteChampionship(movies);
+
             return new ResultChampionship(match.Winner, match.Loser);
         }
 
         private MatchModel ExecuteChampionship(List<MovieModel> movies)
-        {
+        {          
             IGenerateMatches generator = GenerateFactory.CreateGenerator(movies.Count);
+            
             var matches = generator.Execute(movies);
 
             var winners = matches.Select(x => x.Winner).ToList();
+
             if (winners.Count > 1)
                 return ExecuteChampionship(winners);
 

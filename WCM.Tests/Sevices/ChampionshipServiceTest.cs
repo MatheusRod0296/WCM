@@ -1,28 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
 using Refit;
 using WCM.WebApi.Services;
 using Xunit;
+using Moq;
+using WCM.WebApi.Models;
 
 namespace WCM.Tests.Sevices
 {
     public class ChampionshipServiceTest
     {
 
-        private readonly string _url = "http://copafilmes.azurewebsites.net/";
+        private readonly List<MovieModel> _movies = new List<MovieModel>{
+                new MovieModel("tt3606756","Os Incríveis 2", 2018, 8.5 ),
+                new MovieModel("tt4881806","Jurassic World: Reino Ameaçado", 2018, 6.7 ),
+                new MovieModel("tt5164214","Oito Mulheres e um Segredo", 2018, 6.3 ),
+                new MovieModel("tt7784604","Hereditário", 2018, 7.8 ),
+                new MovieModel("tt4154756","Vingadores: Guerra Infinita", 2018, 8.8 ),
+                new MovieModel("tt5463162","Deadpool 2", 2018, 8.1),
+                new MovieModel("tt3778644","Han Solo: Uma História Star Wars", 2018, 7.2 ),
+                new MovieModel("tt3501632","Thor: Ragnarok", 2018, 7.9 )
+                
+            };
         
         [Theory, ClassData(typeof(ReturnSuccess))]
         public async Task ShouldReturnSuccessWhenExecuteChampionshipAsync(string[] ids)
         {
-            var refitService = RestService.For<IMoviesService>(_url);
+            var refitService = new Mock<IMoviesService>();
+            refitService.Setup(m => m.GetMovies()).ReturnsAsync(_movies);     
 
-            var result = await new ChampionshipService(refitService).Play(ids);
+            var result = await new ChampionshipService(refitService.Object).Play(ids);
 
             Assert.True(result.FirstPlace.Id == "tt4154756" && result.SecondPlace.Id == "tt3606756");
         }
@@ -30,9 +39,10 @@ namespace WCM.Tests.Sevices
         [Theory, ClassData(typeof(ReturnError))]
         public async Task ShouldReturnErrorWhenExecuteChampionshipAsync(string[] ids)
         {
-            var refitService = RestService.For<IMoviesService>(_url);
+             var refitService = new Mock<IMoviesService>();
+            refitService.Setup(m => m.GetMovies()).ReturnsAsync(_movies);    
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await new ChampionshipService(refitService).Play(ids));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await new ChampionshipService(refitService.Object).Play(ids));
         }
     }
 
