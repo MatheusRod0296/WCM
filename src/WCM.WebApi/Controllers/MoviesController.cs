@@ -10,7 +10,7 @@ namespace WCM.WebApi.Controllers
 {
     [ApiController]
     [Route("v1/[Controller]")]
-    public class MovieController: Controller
+    public class MoviesController: Controller
     {
        
         [HttpGet]
