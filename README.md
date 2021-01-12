@@ -27,8 +27,8 @@ Caso precise instalar o SDK, você ppode encontra-lo clicando [aqui](https://dot
 - Abra o terminal na pasta raiz do repositório
 - Execute o seguinte comandos : 
 
-    - 1 dotnet restore
-    - 2 dotnet run --project src/WCM.WebApi/WCM.WebApi.csproj
+    -  dotnet restore
+    -  dotnet run --project src/WCM.WebApi/WCM.WebApi.csproj
 
 - Abra o browser de sua preferência e acesse o endereço : [https://localhost:5001/swagger/index.html](https://localhost:5001/swagger/index.html)
 
@@ -37,9 +37,9 @@ Caso precise instalar o SDK, você ppode encontra-lo clicando [aqui](https://dot
 
 - Abra o terminal na pasta raiz do repositório
 - Execute o seguinte comandos : 
-    - 1 dotnet restore
-    - 2 dotnet build
-    - 3 dotnet test
+    -  dotnet restore
+    -  dotnet build
+    -  dotnet test
 
 
 
